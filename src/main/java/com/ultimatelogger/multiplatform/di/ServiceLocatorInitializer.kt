@@ -1,17 +1,21 @@
 package com.ultimatelogger.multiplatform.di
 
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
+import org.koin.core.KoinApplication
 
 internal object ServiceLocatorInitializer {
 
     fun init(logOutput: MultiPriorityLogger) {
-        startKoin {
-            printLogger()
-            modules(applicationModule(logOutput))
-        }
+        val koinApplication = KoinApplication.create()
+        koinApplication.printLogger()
+        koinApplication.modules(applicationModule(logOutput))
+        koinApplication.createEagerInstances()
+
+        LazyServiceLocator.koin = koinApplication.koin
     }
 
-    fun destroy() = stopKoin()
+    fun destroy() {
+        LazyServiceLocator.koin?.close()
+        LazyServiceLocator.koin = null
+    }
 }

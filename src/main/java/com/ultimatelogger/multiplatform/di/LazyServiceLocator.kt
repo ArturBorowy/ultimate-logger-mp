@@ -1,11 +1,16 @@
 package com.ultimatelogger.multiplatform.di
 
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 import com.ultimatelogger.multiplatform.di.util.named
 import com.ultimatelogger.multiplatform.di.util.toKoinParameters
+import com.ultimatelogger.multiplatform.exception.UltimateLoggerNotInitializedException
+import org.koin.core.Koin
 
-internal object LazyServiceLocator : KoinComponent {
+internal object LazyServiceLocator {
+
+    var koin: Koin? = null
+
+    private val koinPrivate: Koin
+        get() = koin ?: throw UltimateLoggerNotInitializedException()
 
     inline fun <reified DependencyT> getDependency(qualifierString: String?) =
             getDependency<DependencyT>(qualifierString, {})
@@ -15,5 +20,7 @@ internal object LazyServiceLocator : KoinComponent {
 
     inline fun <reified DependencyT> getDependency(qualifierString: String? = null,
                                                    vararg parametersGetter: () -> Any? = arrayOf()) =
-            inject<DependencyT>(named(qualifierString)) { parametersGetter.toKoinParameters() }
+            koinPrivate.inject<DependencyT>(named(qualifierString)) {
+                parametersGetter.toKoinParameters()
+            }
 }

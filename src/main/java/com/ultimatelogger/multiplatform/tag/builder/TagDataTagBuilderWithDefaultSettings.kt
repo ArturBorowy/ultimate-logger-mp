@@ -8,6 +8,7 @@ internal class TagDataTagBuilderWithDefaultSettings(
 
     companion object {
         private const val PACKAGE_SEPARATOR = '.'
+        private const val TAG_TO_LOG_IF_BUILT_TAG_IS_EMPTY = "UltimateLogger"
     }
 
     private val defaultTagSettings = defaultTagSettingsRepository.defaultTagSettings
@@ -41,8 +42,8 @@ internal class TagDataTagBuilderWithDefaultSettings(
 
         val output = "$fileNameWithLineNum $className$methodName"
 
-        return if (output == " ") {
-            " "
+        return if (output.isBlank()) {
+            TAG_TO_LOG_IF_BUILT_TAG_IS_EMPTY
         } else {
             output.trim(' ')
         }

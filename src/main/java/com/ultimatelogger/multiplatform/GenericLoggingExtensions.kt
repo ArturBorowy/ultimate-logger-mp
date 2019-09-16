@@ -5,7 +5,7 @@ package com.ultimatelogger.multiplatform
  * `object.tw({ it.method() }, { doSthIfObjectIsNull() }) // it == object`
  * If T-type object is null, invokes `doIfNull` lambda parameter.
  */
-fun <T> T?.tw(block: (T?) -> Unit, doIfNull: () -> Unit) = ti(block, doIfNull)
+fun <T> T?.tw(block: (T) -> Unit, doIfNull: () -> Unit) = ti(block, doIfNull)
 
 /**
  * ti = try inside. Tries running given block INSIDE T-type object e.g.
@@ -16,7 +16,7 @@ fun <T> T?.ti(block: T.() -> Unit, doIfNull: () -> Unit) =
         if (this == null) {
             doIfNull()
         } else {
-            this.block()
+            block()
         }
 
 /**
@@ -24,7 +24,7 @@ fun <T> T?.ti(block: T.() -> Unit, doIfNull: () -> Unit) =
  * `object.tw { it.method() } // it == object`
  * If T-type object is null, logs message about unsuccessful trial.
  */
-fun <T> T?.tw(block: (T?) -> Unit) = tw(block, { logUnsuccessfulTrial() })
+fun <T> T?.tw(block: (T) -> Unit) = tw(block, { logUnsuccessfulTrial() })
 
 /**
  * ti = try inside. Tries running given block INSIDE T-type object e.g.

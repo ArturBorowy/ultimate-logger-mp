@@ -1,15 +1,16 @@
 package com.ultimatelogger.multiplatform.swichablemultipriorityultimatelogger
 
 import com.nhaarman.mockitokotlin2.mock
+import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
+import com.ultimatelogger.multiplatform.di.LazyServiceLocator
+import com.ultimatelogger.multiplatform.output.SwitchableMultiPriorityLogger
+import com.ultimatelogger.multiplatform.tag.provider.string.StringTagProvider
+import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProvider
 import org.junit.After
 import org.junit.Before
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
-import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
-import com.ultimatelogger.multiplatform.output.SwitchableMultiPriorityLogger
-import com.ultimatelogger.multiplatform.tag.provider.string.StringTagProvider
-import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProvider
 
 internal abstract class SwitchableMultiPriorityUltimateLoggerTest {
 
@@ -21,7 +22,7 @@ internal abstract class SwitchableMultiPriorityUltimateLoggerTest {
 
     @Before
     fun setUp() {
-        startKoin {
+        val koinApplication = startKoin {
             modules(
                     module {
                         single { mockSwitchableMultiPriorityLogger }
@@ -30,6 +31,8 @@ internal abstract class SwitchableMultiPriorityUltimateLoggerTest {
                     }
             )
         }
+
+        LazyServiceLocator.koin = koinApplication.koin
 
         switchableMultiPriorityUltimateLogger = object : SwitchableMultiPriorityUltimateLogger() {}
     }

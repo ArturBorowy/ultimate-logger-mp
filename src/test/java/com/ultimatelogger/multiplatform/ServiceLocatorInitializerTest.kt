@@ -30,6 +30,6 @@ internal class ServiceLocatorInitializerTest {
 
         ServiceLocatorInitializer.destroy()
 
-        LazyServiceLocator.getDependency<String>()
+        LazyServiceLocator.getDependency<String>().value
     }
 }

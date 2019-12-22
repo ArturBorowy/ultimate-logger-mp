@@ -1,10 +1,10 @@
 package com.ultimatelogger.multiplatform.swichablemultipriorityultimatelogger
 
 import com.nhaarman.mockitokotlin2.given
+import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
+import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import org.junit.Test
 import org.mockito.Mockito
-import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
-import com.ultimatelogger.multiplatform.output.SwitchableMultiPriorityLogger
 
 internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
         SwitchableMultiPriorityUltimateLoggerTest() {
@@ -28,8 +28,7 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     private fun verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
             switchableMultiPriorityUltimateLoggerAction:
             SwitchableMultiPriorityUltimateLogger.(Any, Boolean, Boolean, Boolean) -> Unit,
-            SwitchableMultiPriorityLoggerAction:
-            SwitchableMultiPriorityLogger.(String, String) -> Unit) {
+            multiPriorityLoggerAction: MultiPriorityLogger.(String, String) -> Unit) {
         val givenAny = Any()
 
         val givenWithFileNameAndLineNum = true
@@ -48,8 +47,8 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
                 givenWithClassName,
                 givenWithMethodName)
 
-        Mockito.verify(mockSwitchableMultiPriorityLogger, Mockito.times(1))
-                .SwitchableMultiPriorityLoggerAction(givenTag, givenAny.toString())
+        Mockito.verify(mockMultiPriorityLogger, Mockito.times(1))
+                .multiPriorityLoggerAction(givenTag, givenAny.toString())
     }
 
     @Test

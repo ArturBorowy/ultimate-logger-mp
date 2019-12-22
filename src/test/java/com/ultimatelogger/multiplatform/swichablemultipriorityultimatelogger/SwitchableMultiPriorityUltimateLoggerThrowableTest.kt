@@ -1,10 +1,10 @@
 package com.ultimatelogger.multiplatform.swichablemultipriorityultimatelogger
 
 import com.nhaarman.mockitokotlin2.given
+import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
+import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import org.junit.Test
 import org.mockito.Mockito
-import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
-import com.ultimatelogger.multiplatform.output.SwitchableMultiPriorityLogger
 
 internal class SwitchableMultiPriorityUltimateLoggerThrowableTest :
         SwitchableMultiPriorityUltimateLoggerTest() {
@@ -26,8 +26,7 @@ internal class SwitchableMultiPriorityUltimateLoggerThrowableTest :
     private fun verifyFirstActionCallSecondActionWithSameThrowableAndTagFromThrowableTagProvider(
             switchableMultiPriorityUltimateLoggerAction:
             SwitchableMultiPriorityUltimateLogger.(Throwable, String) -> Unit,
-            SwitchableMultiPriorityLoggerAction:
-            SwitchableMultiPriorityLogger.(String, String, Throwable) -> Unit) {
+            multiPriorityLoggerAction: MultiPriorityLogger.(String, String, Throwable) -> Unit) {
         val givenMsg = "tp[flw2g[pk4m["
         val givenThrowable = Exception()
 
@@ -38,8 +37,8 @@ internal class SwitchableMultiPriorityUltimateLoggerThrowableTest :
         switchableMultiPriorityUltimateLogger
                 .switchableMultiPriorityUltimateLoggerAction(givenThrowable, givenMsg)
 
-        Mockito.verify(mockSwitchableMultiPriorityLogger, Mockito.times(1))
-                .SwitchableMultiPriorityLoggerAction(givenTag, givenMsg, givenThrowable)
+        Mockito.verify(mockMultiPriorityLogger, Mockito.times(1))
+                .multiPriorityLoggerAction(givenTag, givenMsg, givenThrowable)
     }
 
     @Test

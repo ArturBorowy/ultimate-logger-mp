@@ -1,19 +1,14 @@
 package com.ultimatelogger.multiplatform
 
-import com.ultimatelogger.multiplatform.di.LazyServiceLocator
-import com.ultimatelogger.multiplatform.output.SwitchableMultiPriorityLogger
+import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import com.ultimatelogger.multiplatform.tag.provider.string.StringTagProvider
 import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProvider
 
-abstract class SwitchableMultiPriorityUltimateLogger : InitializableUltimateLogger {
-
-    private val logger: SwitchableMultiPriorityLogger by LazyServiceLocator.getDependency()
-    private val stringTagProvider: StringTagProvider by LazyServiceLocator.getDependency()
-    private val throwableTagProvider: ThrowableTagProvider by LazyServiceLocator.getDependency()
-
-    override fun init(shouldLog: Boolean) {
-        logger.isLoggingOn = shouldLog
-    }
+internal class SwitchableMultiPriorityUltimateLogger(
+        private val logger: MultiPriorityLogger,
+        private val stringTagProvider: StringTagProvider,
+        private val throwableTagProvider: ThrowableTagProvider
+) : UltimateLogger {
 
     override fun v(msg: String?,
                    withFileNameAndLineNum: Boolean?,

@@ -1,13 +1,12 @@
 package com.ultimatelogger.multiplatform.output
 
-import com.ultimatelogger.multiplatform.SwitchableUltimateLogger
 import com.ultimatelogger.multiplatform.UltimateLogger
 import com.ultimatelogger.multiplatform.di.LazyServiceLocator
 import com.ultimatelogger.multiplatform.util.runIf
 
-abstract class LoggingIfIsOnMultiPriorityLogger : SwitchableUltimateLogger {
+open class LoggingIfIsOnMultiPriorityLogger : UltimateLogger {
 
-    override var shouldLog = false
+    internal var shouldLog = false
 
     private val logger: UltimateLogger by LazyServiceLocator.getDependency()
 

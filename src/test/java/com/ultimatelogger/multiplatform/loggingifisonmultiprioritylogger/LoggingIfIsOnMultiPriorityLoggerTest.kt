@@ -46,7 +46,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun tearDown() = stopKoin()
 
     @Test
-    fun `v(String) doesn't call v(String) on mockUltimateLogger`() {
+    fun `v(String) called callCount times v(String) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.v(
                 givenMsg,
                 givenWithFileNameAndLineNum,
@@ -63,14 +63,14 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `v(Throwable) doesn't call v(Throwable) on mockUltimateLogger`() {
+    fun `v(Throwable) called callCount times v(Throwable) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.v(givenThrowable, givenMsg)
 
         verifyCalledOnMockUltimateLogger { v(givenThrowable, givenMsg) }
     }
 
     @Test
-    fun `v(AnyT) doesn't call v(AnyT) on mockUltimateLogger`() {
+    fun `v(AnyT) called callCount times v(AnyT) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.v(
                 givenAny,
                 givenWithFileNameAndLineNum,
@@ -86,7 +86,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `d(String) doesn't call d(String) on mockUltimateLogger`() {
+    fun `d(String) called callCount times d(String) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.d(
                 givenMsg,
                 givenWithFileNameAndLineNum,
@@ -103,14 +103,14 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `d(Throwable) doesn't call d(Throwable) on mockUltimateLogger`() {
+    fun `d(Throwable) called callCount times d(Throwable) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.d(givenThrowable, givenMsg)
 
         verifyCalledOnMockUltimateLogger { d(givenThrowable, givenMsg) }
     }
 
     @Test
-    fun `d(AnyT) doesn't call d(AnyT) on mockUltimateLogger`() {
+    fun `d(AnyT) called callCount times d(AnyT) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.d(
                 givenAny,
                 givenWithFileNameAndLineNum,
@@ -126,7 +126,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `i(String) doesn't call i(String) on mockUltimateLogger`() {
+    fun `i(String) called callCount times i(String) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.i(
                 givenMsg,
                 givenWithFileNameAndLineNum,
@@ -143,14 +143,14 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `i(Throwable) doesn't call i(Throwable) on mockUltimateLogger`() {
+    fun `i(Throwable) called callCount times i(Throwable) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.i(givenThrowable, givenMsg)
 
         verifyCalledOnMockUltimateLogger { i(givenThrowable, givenMsg) }
     }
 
     @Test
-    fun `i(AnyT) doesn't call i(AnyT) on mockUltimateLogger`() {
+    fun `i(AnyT) called callCount times i(AnyT) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.i(
                 givenAny,
                 givenWithFileNameAndLineNum,
@@ -166,7 +166,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `w(String) doesn't call w(String) on mockUltimateLogger`() {
+    fun `w(String) called callCount times w(String) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.w(
                 givenMsg,
                 givenWithFileNameAndLineNum,
@@ -183,14 +183,14 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `w(Throwable) doesn't call w(Throwable) on mockUltimateLogger`() {
+    fun `w(Throwable) called callCount times w(Throwable) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.w(givenThrowable, givenMsg)
 
         verifyCalledOnMockUltimateLogger { w(givenThrowable, givenMsg) }
     }
 
     @Test
-    fun `w(AnyT) doesn't call w(AnyT) on mockUltimateLogger`() {
+    fun `w(AnyT) called callCount times w(AnyT) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.w(
                 givenAny,
                 givenWithFileNameAndLineNum,
@@ -206,7 +206,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `e(String) doesn't call e(String) on mockUltimateLogger`() {
+    fun `e(String) called callCount times e(String) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.e(
                 givenMsg,
                 givenWithFileNameAndLineNum,
@@ -223,14 +223,14 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `e(Throwable) doesn't call e(Throwable) on mockUltimateLogger`() {
+    fun `e(Throwable) called callCount times e(Throwable) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.e(givenThrowable, givenMsg)
 
         verifyCalledOnMockUltimateLogger { e(givenThrowable, givenMsg) }
     }
 
     @Test
-    fun `e(AnyT) doesn't call e(AnyT) on mockUltimateLogger`() {
+    fun `e(AnyT) called callCount times e(AnyT) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.e(
                 givenAny,
                 givenWithFileNameAndLineNum,
@@ -246,7 +246,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `wtf(String) doesn't call wtf(String) on mockUltimateLogger`() {
+    fun `wtf(String) called callCount times wtf(String) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.wtf(
                 givenMsg,
                 givenWithFileNameAndLineNum,
@@ -263,14 +263,14 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     }
 
     @Test
-    fun `wtf(Throwable) doesn't call wtf(Throwable) on mockUltimateLogger`() {
+    fun `wtf(Throwable) called callCount times wtf(Throwable) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.wtf(givenThrowable, givenMsg)
 
         verifyCalledOnMockUltimateLogger { wtf(givenThrowable, givenMsg) }
     }
 
     @Test
-    fun `wtf(AnyT) doesn't call wtf(AnyT) on mockUltimateLogger`() {
+    fun `wtf(AnyT) called callCount times wtf(AnyT) on mockUltimateLogger`() {
         loggingIfIsOnMultiPriorityLogger.wtf(
                 givenAny,
                 givenWithFileNameAndLineNum,

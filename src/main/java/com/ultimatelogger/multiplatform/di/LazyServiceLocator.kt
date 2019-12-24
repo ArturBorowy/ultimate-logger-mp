@@ -20,7 +20,9 @@ internal object LazyServiceLocator {
 
     inline fun <reified DependencyT> getDependency(qualifierString: String? = null,
                                                    vararg parametersGetter: () -> Any? = arrayOf()) =
-            koinPrivate.inject<DependencyT>(named(qualifierString)) {
-                parametersGetter.toKoinParameters()
+            lazy {
+                koinPrivate.get<DependencyT>(named(qualifierString)) {
+                    parametersGetter.toKoinParameters()
+                }
             }
 }

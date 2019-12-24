@@ -1,31 +1,128 @@
 package com.ultimatelogger.multiplatform.output
 
+import com.ultimatelogger.multiplatform.UltimateLogger
+import com.ultimatelogger.multiplatform.di.LazyServiceLocator
 import com.ultimatelogger.multiplatform.util.runIf
 
-internal class LoggingIfIsOnMultiPriorityLogger(private val logger: MultiPriorityLogger,
-                                                override var isLoggingOn: Boolean) :
-        SwitchableMultiPriorityLogger {
+open class LoggingIfIsOnMultiPriorityLogger : UltimateLogger {
 
-    override fun v(tag: String?, msg: String?, throwable: Throwable?) =
-            runIfIsLogginOn { logger.v(tag, msg, throwable) }
+    internal var shouldLog = false
 
-    override fun d(tag: String?, msg: String?, throwable: Throwable?) =
-            runIfIsLogginOn { logger.d(tag, msg, throwable) }
+    private val logger: UltimateLogger by LazyServiceLocator.getDependency()
 
-    override fun i(tag: String?, msg: String?, throwable: Throwable?) =
-            runIfIsLogginOn { logger.i(tag, msg, throwable) }
+    override fun v(msg: String?,
+                   withFileNameAndLineNum: Boolean?,
+                   withClassName: Boolean?,
+                   withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.v(msg, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
 
-    override fun w(tag: String?, msg: String?, throwable: Throwable?) =
-            runIfIsLogginOn { logger.w(tag, msg, throwable) }
+    override fun v(throwable: Throwable?,
+                   extraMessage: String?) {
+        runIfIsLoggingOn { logger.v(throwable, extraMessage) }
+    }
 
-    override fun e(tag: String?, msg: String?, throwable: Throwable?) =
-            runIfIsLogginOn { logger.e(tag, msg, throwable) }
+    override fun <AnyT> v(anything: AnyT?,
+                          withFileNameAndLineNum: Boolean?,
+                          withClassName: Boolean?,
+                          withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.v(anything, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
 
-    override fun wtf(tag: String?, msg: String?, throwable: Throwable?) =
-            runIfIsLogginOn { logger.wtf(tag, msg, throwable) }
+    override fun d(msg: String?,
+                   withFileNameAndLineNum: Boolean?,
+                   withClassName: Boolean?,
+                   withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.d(msg, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
 
-    override fun println(priority: Int, tag: String?, msg: String?) =
-            runIfIsLogginOn { logger.println(priority, tag, msg) }
+    override fun d(throwable: Throwable?,
+                   extraMessage: String?) {
+        runIfIsLoggingOn { logger.d(throwable, extraMessage) }
+    }
 
-    private fun runIfIsLogginOn(block: () -> Unit) = runIf(isLoggingOn) { block() }
+    override fun <AnyT> d(anything: AnyT?,
+                          withFileNameAndLineNum: Boolean?,
+                          withClassName: Boolean?,
+                          withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.d(anything, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun i(msg: String?,
+                   withFileNameAndLineNum: Boolean?,
+                   withClassName: Boolean?,
+                   withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.i(msg, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun i(throwable: Throwable?,
+                   extraMessage: String?) {
+        runIfIsLoggingOn { logger.i(throwable, extraMessage) }
+    }
+
+    override fun <AnyT> i(anything: AnyT?,
+                          withFileNameAndLineNum: Boolean?,
+                          withClassName: Boolean?,
+                          withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.i(anything, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun w(msg: String?,
+                   withFileNameAndLineNum: Boolean?,
+                   withClassName: Boolean?,
+                   withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.w(msg, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun w(throwable: Throwable?,
+                   extraMessage: String?) {
+        runIfIsLoggingOn { logger.w(throwable, extraMessage) }
+    }
+
+    override fun <AnyT> w(anything: AnyT?,
+                          withFileNameAndLineNum: Boolean?,
+                          withClassName: Boolean?,
+                          withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.w(anything, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun e(msg: String?,
+                   withFileNameAndLineNum: Boolean?,
+                   withClassName: Boolean?,
+                   withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.e(msg, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun e(throwable: Throwable?,
+                   extraMessage: String?) {
+        runIfIsLoggingOn { logger.e(throwable, extraMessage) }
+    }
+
+    override fun <AnyT> e(anything: AnyT?,
+                          withFileNameAndLineNum: Boolean?,
+                          withClassName: Boolean?,
+                          withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.e(anything, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun wtf(msg: String?,
+                     withFileNameAndLineNum: Boolean?,
+                     withClassName: Boolean?,
+                     withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.wtf(msg, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    override fun wtf(throwable: Throwable?,
+                     extraMessage: String?) {
+        runIfIsLoggingOn { logger.wtf(throwable, extraMessage) }
+    }
+
+    override fun <AnyT> wtf(anything: AnyT?,
+                            withFileNameAndLineNum: Boolean?,
+                            withClassName: Boolean?,
+                            withMethodName: Boolean?) {
+        runIfIsLoggingOn { logger.wtf(anything, withFileNameAndLineNum, withClassName, withMethodName) }
+    }
+
+    private fun runIfIsLoggingOn(block: () -> Unit) = runIf(shouldLog) { block() }
 }

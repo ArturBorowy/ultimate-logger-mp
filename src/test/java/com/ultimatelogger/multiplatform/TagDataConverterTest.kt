@@ -1,9 +1,10 @@
 package com.ultimatelogger.multiplatform
 
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
+import com.ultimatelogger.multiplatform.tag.dataprovider.TagDataConverter
 import org.junit.Assert
 import org.junit.Test
-import com.ultimatelogger.multiplatform.tag.dataprovider.TagData
-import com.ultimatelogger.multiplatform.tag.dataprovider.TagDataConverter
 
 internal class TagDataConverterTest {
 
@@ -21,12 +22,25 @@ internal class TagDataConverterTest {
 
         val actualTagData = tagDataConverter.fromStackTraceElement(givenStackTraceElement)
 
-        assertTagDataHasGivenDataSet(actualTagData)
-    }
-
-    private fun assertTagDataHasGivenDataSet(actualTagData: TagData) {
         Assert.assertEquals(givenClassName, actualTagData.className)
         Assert.assertEquals(givenFileName, actualTagData.fileName)
+        Assert.assertEquals(givenMethodName, actualTagData.methodName)
+        Assert.assertEquals(givenLineNum, actualTagData.lineNumber.toInt())
+    }
+
+    @Test
+    fun `fromStackTraceElement null`() {
+        val givenStackTraceElement : StackTraceElement = mock()
+
+        given(givenStackTraceElement.fileName).willReturn(null)
+        given(givenStackTraceElement.className).willReturn(givenClassName)
+        given(givenStackTraceElement.methodName).willReturn(givenMethodName)
+        given(givenStackTraceElement.lineNumber).willReturn(givenLineNum)
+
+        val actualTagData = tagDataConverter.fromStackTraceElement(givenStackTraceElement)
+
+        Assert.assertEquals(givenClassName, actualTagData.className)
+        Assert.assertEquals("UnknownFile", actualTagData.fileName)
         Assert.assertEquals(givenMethodName, actualTagData.methodName)
         Assert.assertEquals(givenLineNum, actualTagData.lineNumber.toInt())
     }

@@ -6,10 +6,13 @@ import com.ultimatelogger.multiplatform.tag.dataprovider.TagDataProvider
 
 internal class StackTraceTagDataProvider(
         private val stackTraceElementProvider: StackTraceElementProvider,
-        private val tagDataConverter: TagDataConverter) : TagDataProvider {
+        private val tagDataConverter: TagDataConverter,
+        private val threadNameProvider: ThreadNameProvider) : TagDataProvider {
 
     override fun getTagData(): TagData? {
         val stackTraceElement = stackTraceElementProvider.getStackTraceElement()
-        return stackTraceElement?.let { tagDataConverter.fromStackTraceElement(it) }
+        return stackTraceElement?.let {
+            tagDataConverter.fromStackTraceElement(it, threadNameProvider.threadName)
+        }
     }
 }

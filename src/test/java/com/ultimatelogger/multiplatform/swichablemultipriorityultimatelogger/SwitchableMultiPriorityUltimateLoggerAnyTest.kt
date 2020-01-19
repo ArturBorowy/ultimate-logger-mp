@@ -13,10 +13,11 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     fun `v(Any, ) calls logger v() with stringed anything and tag from stringTagProvider`() {
         verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
                 { any,
+                  withThreadName,
                   withFileNameAndLineNum,
                   withClassName,
                   withMethodName ->
-                    v(any, withFileNameAndLineNum, withClassName, withMethodName)
+                    v(any, withThreadName, withFileNameAndLineNum, withClassName, withMethodName)
                 },
                 { tag,
                   stringedAny ->
@@ -27,22 +28,25 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
 
     private fun verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
             switchableMultiPriorityUltimateLoggerAction:
-            SwitchableMultiPriorityUltimateLogger.(Any, Boolean, Boolean, Boolean) -> Unit,
+            SwitchableMultiPriorityUltimateLogger.(Any, Boolean, Boolean, Boolean, Boolean) -> Unit,
             multiPriorityLoggerAction: MultiPriorityLogger.(String, String) -> Unit) {
         val givenAny = Any()
 
+        val givenWithThreadName = true
         val givenWithFileNameAndLineNum = true
         val givenWithClassName = true
         val givenWithMethodName = true
 
         val givenTag = "]2[3l;]23;]"
 
-        given(mockStringTagProvider.provide(givenWithFileNameAndLineNum,
+        given(mockStringTagProvider.provide(givenWithThreadName,
+                givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName))
                 .willReturn(givenTag)
 
         switchableMultiPriorityUltimateLogger.switchableMultiPriorityUltimateLoggerAction(givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
@@ -55,10 +59,11 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     fun `d(Any, ) calls logger d() with stringed anything and tag from stringTagProvider`() {
         verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
                 { any,
+                  withThreadName,
                   withFileNameAndLineNum,
                   withClassName,
                   withMethodName ->
-                    d(any, withFileNameAndLineNum, withClassName, withMethodName)
+                    d(any, withThreadName, withFileNameAndLineNum, withClassName, withMethodName)
                 },
                 { tag,
                   stringedAny ->
@@ -71,10 +76,11 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     fun `i(Any, ) calls logger i() with stringed anything and tag from stringTagProvider`() {
         verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
                 { any,
+                  withThreadName,
                   withFileNameAndLineNum,
                   withClassName,
                   withMethodName ->
-                    i(any, withFileNameAndLineNum, withClassName, withMethodName)
+                    i(any, withThreadName, withFileNameAndLineNum, withClassName, withMethodName)
                 },
                 { tag,
                   stringedAny ->
@@ -87,10 +93,11 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     fun `w(Any, ) calls logger w() with stringed anything and tag from stringTagProvider`() {
         verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
                 { any,
+                  withThreadName,
                   withFileNameAndLineNum,
                   withClassName,
                   withMethodName ->
-                    w(any, withFileNameAndLineNum, withClassName, withMethodName)
+                    w(any, withThreadName, withFileNameAndLineNum, withClassName, withMethodName)
                 },
                 { tag,
                   stringedAny ->
@@ -103,10 +110,11 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     fun `e(Any, ) calls logger e() with stringed anything and tag from stringTagProvider`() {
         verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
                 { any,
+                  withThreadName,
                   withFileNameAndLineNum,
                   withClassName,
                   withMethodName ->
-                    e(any, withFileNameAndLineNum, withClassName, withMethodName)
+                    e(any, withThreadName, withFileNameAndLineNum, withClassName, withMethodName)
                 },
                 { tag,
                   stringedAny ->
@@ -119,10 +127,11 @@ internal class SwitchableMultiPriorityUltimateLoggerAnyTest :
     fun `wtf(Any, ) calls logger wtf() with stringed anything and tag from stringTagProvider`() {
         verifyFirstActionCallSecondActionWithSameMsgAndTagFromStringTagProvider(
                 { any,
+                  withThreadName,
                   withFileNameAndLineNum,
                   withClassName,
                   withMethodName ->
-                    wtf(any, withFileNameAndLineNum, withClassName, withMethodName)
+                    wtf(any, withThreadName, withFileNameAndLineNum, withClassName, withMethodName)
                 },
                 { tag,
                   stringedAny ->

@@ -14,6 +14,7 @@ internal class TagDataTagBuilderWithDefaultSettings(
     private val defaultTagSettings = defaultTagSettingsRepository.defaultTagSettings
 
     override fun build(tagData: TagData?,
+                       withThreadName: Boolean?,
                        withFileNameAndLineNum: Boolean?,
                        withClassName: Boolean?,
                        withMethodName: Boolean?): String {
@@ -21,6 +22,7 @@ internal class TagDataTagBuilderWithDefaultSettings(
             ""
         } else {
             build(tagData,
+                    withThreadName ?: defaultTagSettings.shouldLogThreadName,
                     withFileNameAndLineNum ?: defaultTagSettings.shouldLogFileNameAndLineNum,
                     withClassName ?: defaultTagSettings.shouldLogClassName,
                     withMethodName ?: defaultTagSettings.shouldLogMethodName)
@@ -28,9 +30,12 @@ internal class TagDataTagBuilderWithDefaultSettings(
     }
 
     private fun build(tagData: TagData,
+                      withThreadName: Boolean,
                       withFileNameAndLineNum: Boolean,
                       withClassName: Boolean,
                       withMethodName: Boolean): String {
+        val threadName = getTagElement(withThreadName, "[${tagData.threadName}]")
+
         val fileNameWithLineNum = getTagElement(withFileNameAndLineNum,
                 "(${tagData.fileName}:${tagData.lineNumber})")
 
@@ -40,7 +45,7 @@ internal class TagDataTagBuilderWithDefaultSettings(
         val methodName = getTagElement(withMethodName,
                 ".${tagData.methodName}()")
 
-        val output = "$fileNameWithLineNum $className$methodName"
+        val output = "$threadName $fileNameWithLineNum $className$methodName"
 
         return if (output.isBlank()) {
             TAG_TO_LOG_IF_BUILT_TAG_IS_EMPTY

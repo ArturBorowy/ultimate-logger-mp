@@ -18,12 +18,16 @@ internal class ThrowableTagProviderFromStringTagProviderTest {
     fun `provide() returns tag from stringTagProvider provide(true, false, false)`() {
         val givenTag = "okpwro23[ik[2"
 
+        val givenWithThreadName = true
+
         given(mockStringTagProvider
-                .provide(withFileNameAndLineNum = true,
+                .provide(withThreadName = givenWithThreadName,
+                        withFileNameAndLineNum = true,
                         withClassName = false,
                         withMethodName = false))
                 .willReturn(givenTag)
 
-        Assert.assertEquals(givenTag, throwableTagProviderFromStringTagProvider.provide())
+        Assert.assertEquals(givenTag,
+                throwableTagProviderFromStringTagProvider.provide(givenWithThreadName))
     }
 }

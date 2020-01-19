@@ -8,19 +8,22 @@ import com.ultimatelogger.multiplatform.tag.dataprovider.TagData
 import com.ultimatelogger.multiplatform.tag.dataprovider.TagDataConverter
 import com.ultimatelogger.multiplatform.tag.dataprovider.stacktrace.StackTraceElementProvider
 import com.ultimatelogger.multiplatform.tag.dataprovider.stacktrace.StackTraceTagDataProvider
+import com.ultimatelogger.multiplatform.tag.dataprovider.stacktrace.ThreadNameProvider
 
 internal class StackTraceTagDataProviderTest {
 
     private val givenClassName = "givenClassName"
     private val givenFileName = "givenFileName"
     private val givenMethodName = "givenMethodName"
+    private val givenThreadName = "givenThreadName"
     private val givenLineNum = 12
 
     private val mockStackTraceElementProvider: StackTraceElementProvider = mock()
     private val mockTagDataConverter: TagDataConverter = mock()
+    private val mockThreadNameProvider: ThreadNameProvider = mock()
 
     private val stackTraceTagDataProvider = StackTraceTagDataProvider(
-            mockStackTraceElementProvider, mockTagDataConverter)
+            mockStackTraceElementProvider, mockTagDataConverter, mockThreadNameProvider)
 
     @Test
     fun `getTagData returns null if stackTraceElement from stackTraceElementProvider is null`() {
@@ -40,7 +43,9 @@ internal class StackTraceTagDataProviderTest {
 
         val expectedTagData: TagData = mock()
 
-        given(mockTagDataConverter.fromStackTraceElement(givenStackTraceElement))
+        given(mockThreadNameProvider.threadName).willReturn(givenThreadName)
+
+        given(mockTagDataConverter.fromStackTraceElement(givenStackTraceElement, givenThreadName))
                 .willReturn(expectedTagData)
 
         Assert.assertEquals(expectedTagData, stackTraceTagDataProvider.getTagData())

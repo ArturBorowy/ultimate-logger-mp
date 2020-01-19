@@ -6,9 +6,10 @@ internal class TagDataConverter {
         private const val FILE_NAME_MISSING = "UnknownFile"
     }
 
-    fun fromStackTraceElement(stackTraceElement: StackTraceElement) =
+    fun fromStackTraceElement(stackTraceElement: StackTraceElement, threadName: String) =
             TagData(stackTraceElement.fileName ?: FILE_NAME_MISSING,
                     stackTraceElement.className,
                     stackTraceElement.methodName,
-                    stackTraceElement.lineNumber.toString())
+                    stackTraceElement.lineNumber.toString(),
+                    threadName)
 }

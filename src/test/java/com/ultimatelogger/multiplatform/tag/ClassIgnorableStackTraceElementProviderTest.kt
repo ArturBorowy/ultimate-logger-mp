@@ -23,6 +23,7 @@ internal class ClassIgnorableStackTraceElementProviderTest {
         given(mockTagSettingsRepository.defaultTagSettings)
                 .willReturn(
                         TagSettings(
+                                shouldLogThreadName = true,
                                 shouldLogFileNameAndLineNum = true,
                                 shouldLogClassName = true,
                                 shouldLogMethodName = true)

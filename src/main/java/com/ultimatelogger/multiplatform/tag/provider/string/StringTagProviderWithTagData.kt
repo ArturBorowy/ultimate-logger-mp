@@ -8,11 +8,16 @@ internal class StringTagProviderWithTagData(
         private val tagDataTagBuilder: TagDataTagBuilder)
     : StringTagProvider {
 
-    override fun provide(withFileNameAndLineNum: Boolean?,
+    override fun provide(withThreadName: Boolean?,
+                         withFileNameAndLineNum: Boolean?,
                          withClassName: Boolean?,
                          withMethodName: Boolean?): String {
         val tagData = tagDataProvider.getTagData()
-        return tagDataTagBuilder
-                .build(tagData, withFileNameAndLineNum, withClassName, withMethodName)
+        return tagDataTagBuilder.build(
+                tagData,
+                withThreadName,
+                withFileNameAndLineNum,
+                withClassName,
+                withMethodName)
     }
 }

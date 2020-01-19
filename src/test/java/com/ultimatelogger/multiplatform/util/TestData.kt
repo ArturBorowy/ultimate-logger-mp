@@ -8,7 +8,8 @@ internal object TestData {
             TagData("fileName",
                     "className",
                     "methodName",
-                    "12")
+                    "12",
+                    "threadName")
 
     fun getStackTrace() =
             listOf(

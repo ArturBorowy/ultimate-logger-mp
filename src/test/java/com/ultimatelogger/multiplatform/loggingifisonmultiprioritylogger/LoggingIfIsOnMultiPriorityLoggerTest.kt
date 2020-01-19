@@ -20,6 +20,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     private val loggingIfIsOnMultiPriorityLogger = object : LoggingIfIsOnMultiPriorityLogger() {}
 
+    private val givenWithThreadName = true
     private val givenWithFileNameAndLineNum = true
     private val givenWithClassName = true
     private val givenWithMethodName = true
@@ -49,6 +50,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun `v(String) called v(String) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.v(
                 givenMsg,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName
@@ -56,6 +58,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
         verifyCalledOnMockUltimateLogger {
             v(givenMsg,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -64,21 +67,23 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     @Test
     fun `v(Throwable) called v(Throwable) on mockUltimateLogger callCount times`() {
-        loggingIfIsOnMultiPriorityLogger.v(givenThrowable, givenMsg)
+        loggingIfIsOnMultiPriorityLogger.v(givenThrowable, givenMsg, givenWithThreadName)
 
-        verifyCalledOnMockUltimateLogger { v(givenThrowable, givenMsg) }
+        verifyCalledOnMockUltimateLogger { v(givenThrowable, givenMsg, givenWithThreadName) }
     }
 
     @Test
     fun `v(AnyT) called v(AnyT) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.v(
                 givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         verifyCalledOnMockUltimateLogger {
             v(givenAny,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -89,6 +94,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun `d(String) called d(String) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.d(
                 givenMsg,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName
@@ -96,6 +102,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
         verifyCalledOnMockUltimateLogger {
             d(givenMsg,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -104,21 +111,23 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     @Test
     fun `d(Throwable) called d(Throwable) on mockUltimateLogger callCount times`() {
-        loggingIfIsOnMultiPriorityLogger.d(givenThrowable, givenMsg)
+        loggingIfIsOnMultiPriorityLogger.d(givenThrowable, givenMsg, givenWithThreadName)
 
-        verifyCalledOnMockUltimateLogger { d(givenThrowable, givenMsg) }
+        verifyCalledOnMockUltimateLogger { d(givenThrowable, givenMsg, givenWithThreadName) }
     }
 
     @Test
     fun `d(AnyT) called d(AnyT) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.d(
                 givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         verifyCalledOnMockUltimateLogger {
             d(givenAny,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -129,6 +138,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun `i(String) called i(String) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.i(
                 givenMsg,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName
@@ -136,6 +146,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
         verifyCalledOnMockUltimateLogger {
             i(givenMsg,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -144,21 +155,23 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     @Test
     fun `i(Throwable) called i(Throwable) on mockUltimateLogger callCount times`() {
-        loggingIfIsOnMultiPriorityLogger.i(givenThrowable, givenMsg)
+        loggingIfIsOnMultiPriorityLogger.i(givenThrowable, givenMsg, givenWithThreadName)
 
-        verifyCalledOnMockUltimateLogger { i(givenThrowable, givenMsg) }
+        verifyCalledOnMockUltimateLogger { i(givenThrowable, givenMsg, givenWithThreadName) }
     }
 
     @Test
     fun `i(AnyT) called i(AnyT) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.i(
                 givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         verifyCalledOnMockUltimateLogger {
             i(givenAny,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -169,6 +182,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun `w(String) called w(String) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.w(
                 givenMsg,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName
@@ -176,6 +190,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
         verifyCalledOnMockUltimateLogger {
             w(givenMsg,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -184,21 +199,23 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     @Test
     fun `w(Throwable) called w(Throwable) on mockUltimateLogger callCount times`() {
-        loggingIfIsOnMultiPriorityLogger.w(givenThrowable, givenMsg)
+        loggingIfIsOnMultiPriorityLogger.w(givenThrowable, givenMsg, givenWithThreadName)
 
-        verifyCalledOnMockUltimateLogger { w(givenThrowable, givenMsg) }
+        verifyCalledOnMockUltimateLogger { w(givenThrowable, givenMsg, givenWithThreadName) }
     }
 
     @Test
     fun `w(AnyT) called w(AnyT) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.w(
                 givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         verifyCalledOnMockUltimateLogger {
             w(givenAny,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -209,6 +226,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun `e(String) called e(String) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.e(
                 givenMsg,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName
@@ -216,6 +234,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
         verifyCalledOnMockUltimateLogger {
             e(givenMsg,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -224,21 +243,23 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     @Test
     fun `e(Throwable) called e(Throwable) on mockUltimateLogger callCount times`() {
-        loggingIfIsOnMultiPriorityLogger.e(givenThrowable, givenMsg)
+        loggingIfIsOnMultiPriorityLogger.e(givenThrowable, givenMsg, givenWithThreadName)
 
-        verifyCalledOnMockUltimateLogger { e(givenThrowable, givenMsg) }
+        verifyCalledOnMockUltimateLogger { e(givenThrowable, givenMsg, givenWithThreadName) }
     }
 
     @Test
     fun `e(AnyT) called e(AnyT) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.e(
                 givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         verifyCalledOnMockUltimateLogger {
             e(givenAny,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -249,6 +270,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
     fun `wtf(String) called wtf(String) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.wtf(
                 givenMsg,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName
@@ -256,6 +278,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
         verifyCalledOnMockUltimateLogger {
             wtf(givenMsg,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)
@@ -264,21 +287,23 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest(private var callCou
 
     @Test
     fun `wtf(Throwable) called wtf(Throwable) on mockUltimateLogger callCount times`() {
-        loggingIfIsOnMultiPriorityLogger.wtf(givenThrowable, givenMsg)
+        loggingIfIsOnMultiPriorityLogger.wtf(givenThrowable, givenMsg, givenWithThreadName)
 
-        verifyCalledOnMockUltimateLogger { wtf(givenThrowable, givenMsg) }
+        verifyCalledOnMockUltimateLogger { wtf(givenThrowable, givenMsg, givenWithThreadName) }
     }
 
     @Test
     fun `wtf(AnyT) called wtf(AnyT) on mockUltimateLogger callCount times`() {
         loggingIfIsOnMultiPriorityLogger.wtf(
                 givenAny,
+                givenWithThreadName,
                 givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         verifyCalledOnMockUltimateLogger {
             wtf(givenAny,
+                    givenWithThreadName,
                     givenWithFileNameAndLineNum,
                     givenWithClassName,
                     givenWithMethodName)

@@ -27,8 +27,10 @@ internal fun applicationModule(logOutput: MultiPriorityLogger) = module {
     single<StackTraceProvider> { StackTraceFromThreadProvider() }
 
     single<StackTraceElementProvider> { ClassIgnorableStackTraceElementProvider(get(), get()) }
-    single<TagDataProvider> { StackTraceTagDataProvider(get(), get()) }
+    single<TagDataProvider> { StackTraceTagDataProvider(get(), get(), get()) }
 
     single { logOutput }
     single<UltimateLogger> { SwitchableMultiPriorityUltimateLogger(get(), get(), get()) }
+
+    single { ThreadNameProvider() }
 }

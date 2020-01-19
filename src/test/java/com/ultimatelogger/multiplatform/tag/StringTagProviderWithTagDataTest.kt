@@ -29,10 +29,12 @@ internal class StringTagProviderWithTagDataTest {
 
         stringTagProviderWithTagData.provide(null,
                 null,
+                null,
                 null)
 
         Mockito.verify(mockTagDataTagBuilder, Mockito.times(1))
                 .build(eq(givenTagData),
+                        anyOrNull(),
                         anyOrNull(),
                         anyOrNull(),
                         anyOrNull())
@@ -40,16 +42,19 @@ internal class StringTagProviderWithTagDataTest {
 
     @Test
     fun `build() calls tagDataTagBuilder build() with same flags`() {
+        val givenWithThreadName = true
         val givenWithFileNameAndLineNum = true
         val givenWithClassName = true
         val givenWithMethodName = true
 
-        stringTagProviderWithTagData.provide(givenWithFileNameAndLineNum,
+        stringTagProviderWithTagData.provide(givenWithThreadName,
+                givenWithFileNameAndLineNum,
                 givenWithClassName,
                 givenWithMethodName)
 
         Mockito.verify(mockTagDataTagBuilder, Mockito.times(1))
                 .build(anyOrNull(),
+                        eq(givenWithThreadName),
                         eq(givenWithFileNameAndLineNum),
                         eq(givenWithClassName),
                         eq(givenWithMethodName))
@@ -62,10 +67,12 @@ internal class StringTagProviderWithTagDataTest {
         given(mockTagDataTagBuilder.build(anyOrNull(),
                 anyOrNull(),
                 anyOrNull(),
+                anyOrNull(),
                 anyOrNull()))
                 .willReturn(givenTag)
 
         val actualTag = stringTagProviderWithTagData.provide(null,
+                null,
                 null,
                 null)
 

@@ -11,149 +11,200 @@ internal class SwitchableMultiPriorityUltimateLogger(
 ) : UltimateLogger {
 
     override fun v(msg: String?,
+                   withThreadName: Boolean?,
                    withFileNameAndLineNum: Boolean?,
                    withClassName: Boolean?,
                    withMethodName: Boolean?) {
         logger.v(
-                getTagForString(withFileNameAndLineNum,
+                getTagForString(withThreadName,
+                        withFileNameAndLineNum,
                         withClassName,
                         withMethodName),
                 msg)
     }
 
     override fun v(throwable: Throwable?,
-                   extraMessage: String?) {
-        logger.v(getTagForThrowable(), extraMessage, throwable)
+                   extraMessage: String?,
+                   withThreadName: Boolean?) {
+        logger.v(getTagForThrowable(withThreadName), extraMessage, throwable)
     }
 
     override fun <AnyT> v(anything: AnyT?,
+                          withThreadName: Boolean?,
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        v(anything.toString(), withFileNameAndLineNum, withClassName, withMethodName)
+        v(anything.toString(), 
+                withThreadName, 
+                withFileNameAndLineNum,
+                withClassName, 
+                withMethodName)
     }
 
     override fun d(msg: String?,
+                   withThreadName: Boolean?,
                    withFileNameAndLineNum: Boolean?,
                    withClassName: Boolean?,
                    withMethodName: Boolean?) {
         logger.d(
-                getTagForString(withFileNameAndLineNum,
+                getTagForString(withThreadName,
+                        withFileNameAndLineNum,
                         withClassName,
                         withMethodName),
                 msg)
     }
 
     override fun d(throwable: Throwable?,
-                   extraMessage: String?) {
-        logger.d(getTagForThrowable(), extraMessage, throwable)
+                   extraMessage: String?,
+                   withThreadName: Boolean?) {
+        logger.d(getTagForThrowable(withThreadName), extraMessage, throwable)
     }
 
     override fun <AnyT> d(anything: AnyT?,
+                          withThreadName: Boolean?,
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        d(anything.toString(), withFileNameAndLineNum, withClassName, withMethodName)
+        d(anything.toString(), 
+                withThreadName, 
+                withFileNameAndLineNum,
+                withClassName, 
+                withMethodName)
     }
 
     override fun i(msg: String?,
+                   withThreadName: Boolean?,
                    withFileNameAndLineNum: Boolean?,
                    withClassName: Boolean?,
                    withMethodName: Boolean?) {
         logger.i(
-                getTagForString(withFileNameAndLineNum,
+                getTagForString(withThreadName,
+                        withFileNameAndLineNum,
                         withClassName,
                         withMethodName),
                 msg)
     }
 
     override fun i(throwable: Throwable?,
-                   extraMessage: String?) {
-        logger.i(getTagForThrowable(), extraMessage, throwable)
+                   extraMessage: String?,
+                   withThreadName: Boolean?) {
+        logger.i(getTagForThrowable(withThreadName), extraMessage, throwable)
     }
 
     override fun <AnyT> i(anything: AnyT?,
+                          withThreadName: Boolean?,
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        i(anything.toString(), withFileNameAndLineNum, withClassName, withMethodName)
+        i(anything.toString(), 
+                withThreadName, 
+                withFileNameAndLineNum,
+                withClassName, 
+                withMethodName)
     }
 
     override fun w(msg: String?,
+                   withThreadName: Boolean?,
                    withFileNameAndLineNum: Boolean?,
                    withClassName: Boolean?,
                    withMethodName: Boolean?) {
         logger.w(
-                getTagForString(withFileNameAndLineNum,
+                getTagForString(withThreadName,
+                        withFileNameAndLineNum,
                         withClassName,
                         withMethodName),
                 msg)
     }
 
     override fun w(throwable: Throwable?,
-                   extraMessage: String?) {
-        logger.w(getTagForThrowable(), extraMessage, throwable)
+                   extraMessage: String?,
+                   withThreadName: Boolean?) {
+        logger.w(getTagForThrowable(withThreadName), extraMessage, throwable)
     }
 
     override fun <AnyT> w(anything: AnyT?,
+                          withThreadName: Boolean?,
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        w(anything.toString(), withFileNameAndLineNum, withClassName, withMethodName)
+        w(anything.toString(), 
+                withThreadName, 
+                withFileNameAndLineNum,
+                withClassName, 
+                withMethodName)
     }
 
     override fun e(msg: String?,
+                   withThreadName: Boolean?,
                    withFileNameAndLineNum: Boolean?,
                    withClassName: Boolean?,
                    withMethodName: Boolean?) {
         logger.e(
-                getTagForString(withFileNameAndLineNum,
+                getTagForString(withThreadName,
+                        withFileNameAndLineNum,
                         withClassName,
                         withMethodName),
                 msg)
     }
 
     override fun e(throwable: Throwable?,
-                   extraMessage: String?) {
-        logger.e(getTagForThrowable(), extraMessage, throwable)
+                   extraMessage: String?,
+                   withThreadName: Boolean?) {
+        logger.e(getTagForThrowable(withThreadName), extraMessage, throwable)
     }
 
     override fun <AnyT> e(anything: AnyT?,
+                          withThreadName: Boolean?,
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        e(anything.toString(), withFileNameAndLineNum, withClassName, withMethodName)
+        e(anything.toString(), 
+                withThreadName, 
+                withFileNameAndLineNum,
+                withClassName, 
+                withMethodName)
     }
 
     override fun wtf(msg: String?,
+                     withThreadName: Boolean?,
                      withFileNameAndLineNum: Boolean?,
                      withClassName: Boolean?,
                      withMethodName: Boolean?) {
         logger.wtf(
-                getTagForString(withFileNameAndLineNum,
+                getTagForString(withThreadName,
+                        withFileNameAndLineNum,
                         withClassName,
                         withMethodName),
                 msg)
     }
 
     override fun wtf(throwable: Throwable?,
-                     extraMessage: String?) {
-        logger.wtf(getTagForThrowable(), extraMessage, throwable)
+                     extraMessage: String?,
+                     withThreadName: Boolean?) {
+        logger.wtf(getTagForThrowable(withThreadName), extraMessage, throwable)
     }
 
     override fun <AnyT> wtf(anything: AnyT?,
+                            withThreadName: Boolean?,
                             withFileNameAndLineNum: Boolean?,
                             withClassName: Boolean?,
                             withMethodName: Boolean?) {
-        wtf(anything.toString(), withFileNameAndLineNum, withClassName, withMethodName)
+        wtf(anything.toString(), 
+                withThreadName, 
+                withFileNameAndLineNum,
+                withClassName, 
+                withMethodName)
     }
 
-    private fun getTagForString(withFileNameAndLineNum: Boolean?,
+    private fun getTagForString(withThreadName: Boolean?,
+                                withFileNameAndLineNum: Boolean?,
                                 withClassName: Boolean?,
                                 withMethodName: Boolean?) =
-            stringTagProvider.provide(withFileNameAndLineNum,
+            stringTagProvider.provide(withThreadName,
+                    withFileNameAndLineNum,
                     withClassName,
                     withMethodName)
 
-    private fun getTagForThrowable() = throwableTagProvider.provide()
+    private fun getTagForThrowable(withThreadName: Boolean?) =
+            throwableTagProvider.provide(withThreadName)
 }

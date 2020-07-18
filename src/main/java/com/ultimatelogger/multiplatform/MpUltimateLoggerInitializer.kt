@@ -31,7 +31,10 @@ object MpUltimateLoggerInitializer {
     }
 
     private fun initServiceLocator(logOutput: MultiPriorityLogger, module: Module) {
-        module.declareDefinition(module.single(override = true) { logOutput  }, Options(override = true))
+        module.declareDefinition(
+            module.single(override = true) { logOutput },
+            Options(override = true)
+        )
         ServiceLocatorInitializer.init(module)
     }
 

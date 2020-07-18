@@ -3,7 +3,6 @@ package com.ultimatelogger.multiplatform.di
 import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
 import com.ultimatelogger.multiplatform.UltimateLogger
 import com.ultimatelogger.multiplatform.data.TagSettingsRepository
-import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import com.ultimatelogger.multiplatform.tag.builder.TagDataTagBuilder
 import com.ultimatelogger.multiplatform.tag.builder.TagDataTagBuilderWithDefaultSettings
 import com.ultimatelogger.multiplatform.tag.dataprovider.TagDataConverter
@@ -15,7 +14,7 @@ import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProvi
 import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProviderFromStringTagProvider
 import org.koin.dsl.module
 
-internal fun applicationModule(logOutput: MultiPriorityLogger) = module {
+internal fun applicationModule() = module {
     single<TagDataTagBuilder> { TagDataTagBuilderWithDefaultSettings(get()) }
 
     single<StringTagProvider> { StringTagProviderWithTagData(get(), get()) }
@@ -29,7 +28,6 @@ internal fun applicationModule(logOutput: MultiPriorityLogger) = module {
     single<StackTraceElementProvider> { ClassIgnorableStackTraceElementProvider(get(), get()) }
     single<TagDataProvider> { StackTraceTagDataProvider(get(), get(), get()) }
 
-    single { logOutput }
     single<UltimateLogger> { SwitchableMultiPriorityUltimateLogger(get(), get(), get()) }
 
     single { ThreadNameProvider() }

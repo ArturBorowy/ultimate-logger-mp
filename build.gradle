@@ -10,7 +10,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$KOTLIN_VERSION"
 
-    implementation "org.koin:koin-core:$KOIN_VERSION"
+    api "org.koin:koin-core:$KOIN_VERSION"
 
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:2.28.2"

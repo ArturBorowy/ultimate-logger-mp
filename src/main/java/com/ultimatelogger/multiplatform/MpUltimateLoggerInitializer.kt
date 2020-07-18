@@ -6,6 +6,8 @@ import com.ultimatelogger.multiplatform.di.ServiceLocatorInitializer
 import com.ultimatelogger.multiplatform.output.LoggingIfIsOnMultiPriorityLogger
 import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import com.ultimatelogger.multiplatform.tag.TagSettings
+import org.koin.core.definition.Options
+import org.koin.core.module.Module
 
 object MpUltimateLoggerInitializer {
 
@@ -14,19 +16,23 @@ object MpUltimateLoggerInitializer {
      */
     internal var ultimateLogger: UltimateLogger? = null
 
-    fun init(shouldLog: Boolean,
-             defaultTagSettings: TagSettings,
-             ultimateLoggerLazy: Lazy<LoggingIfIsOnMultiPriorityLogger>,
-             logOutput: MultiPriorityLogger) {
-        initServiceLocator(logOutput)
+    fun init(
+        shouldLog: Boolean,
+        defaultTagSettings: TagSettings,
+        ultimateLoggerLazy: Lazy<LoggingIfIsOnMultiPriorityLogger>,
+        logOutput: MultiPriorityLogger,
+        module: Module = Module(false, true)
+    ) {
+        initServiceLocator(logOutput, module)
         setDefaultTagSettings(defaultTagSettings)
 
         ultimateLogger = ultimateLoggerLazy.value
         ultimateLoggerLazy.value.shouldLog = shouldLog
     }
 
-    private fun initServiceLocator(logOutput: MultiPriorityLogger) {
-        ServiceLocatorInitializer.init(logOutput)
+    private fun initServiceLocator(logOutput: MultiPriorityLogger, module: Module) {
+        module.declareDefinition(module.single(override = true) { logOutput  }, Options(override = true))
+        ServiceLocatorInitializer.init(module)
     }
 
     private fun setDefaultTagSettings(defaultTagSettings: TagSettings) {

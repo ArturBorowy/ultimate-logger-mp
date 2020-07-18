@@ -8,8 +8,11 @@ import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import org.junit.After
 import org.junit.Test
 import org.koin.core.context.stopKoin
+import org.koin.core.module.Module
 
 internal class ServiceLocatorInitializerTest {
+
+    private val mockModule : Module = mock()
 
     private val mockMultiPriorityLogger: MultiPriorityLogger = mock()
 
@@ -20,13 +23,13 @@ internal class ServiceLocatorInitializerTest {
 
     @Test
     fun `init starts Koin, so LazyServiceLocator getDependency doesn't throw exception`() {
-        ServiceLocatorInitializer.init(mockMultiPriorityLogger)
+        ServiceLocatorInitializer.init(mockModule)
         LazyServiceLocator.getDependency<String>()
     }
 
     @Test(expected = UltimateLoggerNotInitializedException::class)
     fun `destroy stops Koin, so LazyServiceLocator getDependency throws exception`() {
-        ServiceLocatorInitializer.init(mockMultiPriorityLogger)
+        ServiceLocatorInitializer.init(mockModule)
 
         ServiceLocatorInitializer.destroy()
 

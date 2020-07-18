@@ -6,6 +6,7 @@ import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylo
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenLineNumber
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenMethodName
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenMsg
+import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenThreadName
 import com.ultimatelogger.multiplatform.tag.TagSettings
 import org.junit.Test
 import org.mockito.Mockito
@@ -14,6 +15,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
 
     override fun setUp() {
         stubStackTraceProvider()
+        stubThreadNameProvider()
     }
 
     @Test
@@ -29,7 +31,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
         )
 
         testVMethodCalled(
-            "[main] ($givenFileName:$givenLineNumber) $givenClassName.$givenMethodName()"
+            "[$givenThreadName] ($givenFileName:$givenLineNumber) $givenClassName.$givenMethodName()"
         )
     }
 
@@ -51,7 +53,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main]  $givenClassName.$givenMethodName()")
+        testVMethodCalled("[$givenThreadName]  $givenClassName.$givenMethodName()")
     }
 
     @Test
@@ -66,7 +68,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main] ($givenFileName:$givenLineNumber) .$givenMethodName()")
+        testVMethodCalled("[$givenThreadName] ($givenFileName:$givenLineNumber) .$givenMethodName()")
     }
 
     @Test
@@ -81,7 +83,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main] ($givenFileName:$givenLineNumber) $givenClassName")
+        testVMethodCalled("[$givenThreadName] ($givenFileName:$givenLineNumber) $givenClassName")
     }
 
     @Test
@@ -111,7 +113,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main]  .$givenMethodName()")
+        testVMethodCalled("[$givenThreadName]  .$givenMethodName()")
     }
 
     @Test
@@ -156,7 +158,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main] ($givenFileName:$givenLineNumber)")
+        testVMethodCalled("[$givenThreadName] ($givenFileName:$givenLineNumber)")
     }
 
     @Test
@@ -186,7 +188,7 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main]  $givenClassName")
+        testVMethodCalled("[$givenThreadName]  $givenClassName")
     }
 
     @Test
@@ -261,6 +263,6 @@ internal class TagBuildingTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
 
-        testVMethodCalled("[main]")
+        testVMethodCalled("[$givenThreadName]")
     }
 }

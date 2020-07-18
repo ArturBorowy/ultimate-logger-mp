@@ -19,6 +19,7 @@ internal class ShouldLogFalseSetTest : LoggingIfIsOnMultiPriorityLoggerTest() {
             )
         )
         stubStackTraceProvider()
+        stubThreadNameProvider()
     }
 
     @Test

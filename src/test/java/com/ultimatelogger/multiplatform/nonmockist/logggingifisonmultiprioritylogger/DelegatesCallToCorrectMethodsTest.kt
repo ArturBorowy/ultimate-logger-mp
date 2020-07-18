@@ -5,6 +5,7 @@ import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylo
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenFileName
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenLineNumber
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenMethodName
+import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenThreadName
 import org.junit.Test
 import org.mockito.Mockito
 
@@ -12,8 +13,9 @@ internal class DelegatesCallToCorrectMethodsTest : LoggingIfIsOnMultiPriorityLog
 
     companion object {
         private const val expectedMsgAndAnyLogTag =
-            "[main] ($givenFileName:$givenLineNumber) $givenClassName.$givenMethodName()"
-        private const val expectedThrowableLogTag = "[main] ($givenFileName:$givenLineNumber)"
+            "[$givenThreadName] ($givenFileName:$givenLineNumber) $givenClassName.$givenMethodName()"
+        private const val expectedThrowableLogTag =
+            "[$givenThreadName] ($givenFileName:$givenLineNumber)"
     }
 
     @Test

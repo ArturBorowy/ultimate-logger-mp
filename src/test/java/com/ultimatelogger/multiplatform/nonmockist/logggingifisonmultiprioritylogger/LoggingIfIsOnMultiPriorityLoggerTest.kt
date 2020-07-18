@@ -3,16 +3,19 @@ package com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultipriorityl
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.ultimatelogger.multiplatform.MpUltimateLoggerInitializer
+import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenThreadName
 import com.ultimatelogger.multiplatform.output.LoggingIfIsOnMultiPriorityLogger
 import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import com.ultimatelogger.multiplatform.tag.TagSettings
 import com.ultimatelogger.multiplatform.tag.dataprovider.stacktrace.StackTraceProvider
+import com.ultimatelogger.multiplatform.tag.dataprovider.stacktrace.ThreadNameProvider
 import org.junit.After
 import org.junit.Before
 import org.koin.dsl.module
 
 internal abstract class LoggingIfIsOnMultiPriorityLoggerTest {
 
+    protected val mockThreadNameProvider: ThreadNameProvider = mock()
     protected val mockStackTraceProvider: StackTraceProvider = mock()
     protected val mockMultiPriorityLogger: MultiPriorityLogger = mock()
 
@@ -31,6 +34,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest {
             )
         )
         stubStackTraceProvider()
+        stubThreadNameProvider()
     }
 
     protected fun initLogger(
@@ -44,6 +48,7 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest {
             mockMultiPriorityLogger,
             module {
                 single(override = true) { mockStackTraceProvider }
+                single(override = true) { mockThreadNameProvider }
             }
         )
     }
@@ -56,6 +61,10 @@ internal abstract class LoggingIfIsOnMultiPriorityLoggerTest {
             StubTagData.givenLineNumber
         )
         given(mockStackTraceProvider.provide()).willReturn(listOf(givenStackTraceElement))
+    }
+
+    protected fun stubThreadNameProvider() {
+        given(mockThreadNameProvider.threadName).willReturn(givenThreadName)
     }
 
     @After

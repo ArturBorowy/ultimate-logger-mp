@@ -161,4 +161,12 @@ internal class DelegatesCallToCorrectMethodsTest : LoggingIfIsOnMultiPriorityLog
         Mockito.verify(mockMultiPriorityLogger, times(1))
             .wtf(expectedMsgAndAnyLogTag, StubTagData.givenAny.toString())
     }
+
+    @Test
+    fun `todo(anything) calls w(properTag, anything toString()) on provided MultiPriorityLogger`() {
+        loggingIfIsOnMultiPriorityLogger.todo(StubTagData.givenAny)
+
+        Mockito.verify(mockMultiPriorityLogger, times(1))
+            .w(expectedMsgAndAnyLogTag, StubTagData.givenAny.toString())
+    }
 }

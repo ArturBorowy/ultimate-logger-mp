@@ -28,7 +28,7 @@ internal fun applicationModule() = module {
     single<StackTraceElementProvider> { ClassIgnorableStackTraceElementProvider(get(), get()) }
     single<TagDataProvider> { StackTraceTagDataProvider(get(), get(), get()) }
 
-    single<UltimateLogger> { SwitchableMultiPriorityUltimateLogger(get(), get(), get()) }
+    single<UltimateLogger> { SwitchableMultiPriorityUltimateLogger(get(), get(), get(), get()) }
 
     single { ThreadNameProvider() }
 }

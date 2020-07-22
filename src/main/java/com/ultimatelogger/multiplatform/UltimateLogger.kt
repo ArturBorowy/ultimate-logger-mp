@@ -89,4 +89,12 @@ interface UltimateLogger {
                    withFileNameAndLineNum: Boolean? = null,
                    withClassName: Boolean? = null,
                    withMethodName: Boolean? = null)
+
+    fun <AnyT> todo(
+        anything: AnyT?,
+        withThreadName: Boolean? = null,
+        withFileNameAndLineNum: Boolean? = null,
+        withClassName: Boolean? = null,
+        withMethodName: Boolean? = null
+    )
 }

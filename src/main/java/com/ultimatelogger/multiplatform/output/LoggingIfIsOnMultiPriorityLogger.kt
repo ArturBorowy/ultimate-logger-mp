@@ -190,5 +190,19 @@ open class LoggingIfIsOnMultiPriorityLogger : UltimateLogger {
         }
     }
 
+    override fun <AnyT> todo(anything: AnyT?,
+                    withThreadName: Boolean?,
+                    withFileNameAndLineNum: Boolean?,
+                    withClassName: Boolean?,
+                    withMethodName: Boolean?) {
+        runIfIsLoggingOn {
+            logger.todo(anything,
+                withThreadName,
+                withFileNameAndLineNum,
+                withClassName,
+                withMethodName)
+        }
+    }
+
     private fun runIfIsLoggingOn(block: () -> Unit) = runIf(shouldLog) { block() }
 }

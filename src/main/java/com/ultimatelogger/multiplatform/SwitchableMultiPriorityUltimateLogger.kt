@@ -1,5 +1,6 @@
 package com.ultimatelogger.multiplatform
 
+import com.ultimatelogger.multiplatform.data.TagSettingsRepository
 import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import com.ultimatelogger.multiplatform.tag.provider.string.StringTagProvider
 import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProvider
@@ -7,7 +8,8 @@ import com.ultimatelogger.multiplatform.tag.provider.throwable.ThrowableTagProvi
 internal class SwitchableMultiPriorityUltimateLogger(
         private val logger: MultiPriorityLogger,
         private val stringTagProvider: StringTagProvider,
-        private val throwableTagProvider: ThrowableTagProvider
+        private val throwableTagProvider: ThrowableTagProvider,
+        private val tagSettingsRepository: TagSettingsRepository
 ) : UltimateLogger {
 
     override fun v(msg: String?,
@@ -34,10 +36,10 @@ internal class SwitchableMultiPriorityUltimateLogger(
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        v(anything.toString(), 
-                withThreadName, 
+        v(anything.toString(),
+                withThreadName,
                 withFileNameAndLineNum,
-                withClassName, 
+                withClassName,
                 withMethodName)
     }
 
@@ -65,10 +67,10 @@ internal class SwitchableMultiPriorityUltimateLogger(
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        d(anything.toString(), 
-                withThreadName, 
+        d(anything.toString(),
+                withThreadName,
                 withFileNameAndLineNum,
-                withClassName, 
+                withClassName,
                 withMethodName)
     }
 
@@ -96,10 +98,10 @@ internal class SwitchableMultiPriorityUltimateLogger(
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        i(anything.toString(), 
-                withThreadName, 
+        i(anything.toString(),
+                withThreadName,
                 withFileNameAndLineNum,
-                withClassName, 
+                withClassName,
                 withMethodName)
     }
 
@@ -127,10 +129,10 @@ internal class SwitchableMultiPriorityUltimateLogger(
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        w(anything.toString(), 
-                withThreadName, 
+        w(anything.toString(),
+                withThreadName,
                 withFileNameAndLineNum,
-                withClassName, 
+                withClassName,
                 withMethodName)
     }
 
@@ -158,10 +160,10 @@ internal class SwitchableMultiPriorityUltimateLogger(
                           withFileNameAndLineNum: Boolean?,
                           withClassName: Boolean?,
                           withMethodName: Boolean?) {
-        e(anything.toString(), 
-                withThreadName, 
+        e(anything.toString(),
+                withThreadName,
                 withFileNameAndLineNum,
-                withClassName, 
+                withClassName,
                 withMethodName)
     }
 
@@ -189,11 +191,31 @@ internal class SwitchableMultiPriorityUltimateLogger(
                             withFileNameAndLineNum: Boolean?,
                             withClassName: Boolean?,
                             withMethodName: Boolean?) {
-        wtf(anything.toString(), 
-                withThreadName, 
+        wtf(anything.toString(),
+            withThreadName,
+            withFileNameAndLineNum,
+            withClassName,
+            withMethodName)
+    }
+
+    override fun <AnyT> todo(
+        anything: AnyT?,
+        withThreadName: Boolean?,
+        withFileNameAndLineNum: Boolean?,
+        withClassName: Boolean?,
+        withMethodName: Boolean?
+    ) {
+        if (tagSettingsRepository.defaultTagSettings.todoMethod == null) {
+            w(
+                anything.toString(),
+                withThreadName,
                 withFileNameAndLineNum,
-                withClassName, 
-                withMethodName)
+                withClassName,
+                withMethodName
+            )
+        } else {
+            tagSettingsRepository.defaultTagSettings.todoMethod?.invoke(anything.toString())
+        }
     }
 
     private fun getTagForString(withThreadName: Boolean?,

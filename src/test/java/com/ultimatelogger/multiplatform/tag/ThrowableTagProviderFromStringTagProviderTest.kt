@@ -1,7 +1,7 @@
 package com.ultimatelogger.multiplatform.tag
 
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
 import org.junit.Assert
 import org.junit.Test
 import com.ultimatelogger.multiplatform.tag.provider.string.StringTagProvider

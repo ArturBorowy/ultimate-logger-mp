@@ -1,6 +1,6 @@
 package com.ultimatelogger.multiplatform
 
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.mock
 import com.ultimatelogger.multiplatform.di.LazyServiceLocator
 import com.ultimatelogger.multiplatform.di.ServiceLocatorInitializer
 import com.ultimatelogger.multiplatform.exception.UltimateLoggerNotInitializedException

@@ -1,12 +1,22 @@
-name: Clean+Build+Test
+name: Build+Test
 
 on: [pull_request]
 
 jobs:
-  job:
+  buildAndTest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: MrRamych/gradle-actions/openjdk-8@3.1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
         with:
-          args: clean build test
+          java-version: 21
+          distribution: temurin
+
+      - name: assemble
+        run: bash ./gradlew assemble
+
+      - name: test
+        run: bash ./gradlew test

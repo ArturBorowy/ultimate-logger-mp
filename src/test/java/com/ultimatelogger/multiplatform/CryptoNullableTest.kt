@@ -1,6 +1,6 @@
 package com.ultimatelogger.multiplatform
 
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.mock
 import org.junit.Assert
 import org.junit.Test
 import com.ultimatelogger.multiplatform.util.CryptoNullable

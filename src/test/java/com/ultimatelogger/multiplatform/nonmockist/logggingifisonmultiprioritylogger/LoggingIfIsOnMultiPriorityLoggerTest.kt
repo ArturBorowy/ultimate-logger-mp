@@ -1,7 +1,7 @@
 package com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger
 
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
 import com.ultimatelogger.multiplatform.MpUltimateLoggerInitializer
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenThreadName
 import com.ultimatelogger.multiplatform.output.LoggingIfIsOnMultiPriorityLogger

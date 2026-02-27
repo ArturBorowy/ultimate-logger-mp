@@ -1,6 +1,6 @@
 package com.ultimatelogger.multiplatform
 
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.mock
 import org.junit.Test
 import org.mockito.Mockito
 import com.ultimatelogger.multiplatform.util.runIf

@@ -1,6 +1,6 @@
 package com.ultimatelogger.multiplatform.swichablemultipriorityultimatelogger
 
-import com.nhaarman.mockitokotlin2.given
+import org.mockito.kotlin.given
 import com.ultimatelogger.multiplatform.SwitchableMultiPriorityUltimateLogger
 import com.ultimatelogger.multiplatform.output.MultiPriorityLogger
 import org.junit.Test

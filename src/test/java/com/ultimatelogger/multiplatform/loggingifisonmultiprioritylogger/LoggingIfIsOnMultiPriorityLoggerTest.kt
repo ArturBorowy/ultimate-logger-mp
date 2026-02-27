@@ -1,6 +1,6 @@
 package com.ultimatelogger.multiplatform.loggingifisonmultiprioritylogger
 
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.mock
 import com.ultimatelogger.multiplatform.UltimateLogger
 import com.ultimatelogger.multiplatform.di.LazyServiceLocator
 import com.ultimatelogger.multiplatform.output.LoggingIfIsOnMultiPriorityLogger

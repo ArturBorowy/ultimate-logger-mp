@@ -1,9 +1,9 @@
 package com.ultimatelogger.multiplatform.tag
 
-import com.nhaarman.mockitokotlin2.anyOrNull
-import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.anyOrNull
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.given
+import org.mockito.kotlin.mock
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito

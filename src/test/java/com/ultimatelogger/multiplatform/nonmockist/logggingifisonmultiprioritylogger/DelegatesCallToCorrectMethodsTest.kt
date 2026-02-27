@@ -1,6 +1,6 @@
 package com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger
 
-import com.nhaarman.mockitokotlin2.times
+import org.mockito.kotlin.times
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenClassName
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenFileName
 import com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger.StubTagData.givenLineNumber

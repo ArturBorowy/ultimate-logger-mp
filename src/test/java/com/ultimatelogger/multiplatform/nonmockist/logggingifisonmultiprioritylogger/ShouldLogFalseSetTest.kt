@@ -1,7 +1,7 @@
 package com.ultimatelogger.multiplatform.nonmockist.logggingifisonmultiprioritylogger
 
-import com.nhaarman.mockitokotlin2.anyOrNull
-import com.nhaarman.mockitokotlin2.never
+import org.mockito.kotlin.anyOrNull
+import org.mockito.kotlin.never
 import com.ultimatelogger.multiplatform.tag.TagSettings
 import org.junit.Test
 import org.mockito.Mockito
